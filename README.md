@@ -10,6 +10,10 @@ shelob scanme.nmap.org -p 22
 shelob scanme.nmap.org -p 80 -t 3
 ```
 
+## Banner
+
+On startup, shelob prints the shared spider signature. `--no-banner` disables it; `NO_COLOR` prints it in plain text.
+
 ## What I learned
 
 - Banner grabbing (passive SSH vs active HTTP HEAD)

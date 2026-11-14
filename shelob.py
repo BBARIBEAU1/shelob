@@ -4,6 +4,8 @@ import argparse
 import subprocess
 import re
 
+from banner import print_banner
+
 def grab_banner(host, port, timeout=2.0):
     """Return the banner string, or None."""
     try:
@@ -84,7 +86,10 @@ def main():
     parser.add_argument("host", help="Target host")
     parser.add_argument("-p", "--port", type=int, required=True, help="Port to fingerprint")
     parser.add_argument("-t", "--timeout", type=float, default=2.0)
+    parser.add_argument("--no-banner", action="store_true", help="Skip the startup signature banner")
     args = parser.parse_args()
+    if not args.no_banner:
+        print_banner("shelob", "service fingerprinter")
 
     print(f"[*] Fingerprinting {args.host}:{args.port}")
     banner = grab_banner(args.host, args.port, args.timeout)
